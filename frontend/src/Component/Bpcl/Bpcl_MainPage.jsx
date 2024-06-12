@@ -9,7 +9,7 @@ const Bpcl_MainPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex-grow overflow-y-auto mb-10">
+      <div>
         <WG12 />
         <WG16 />
         <LiveGraph />

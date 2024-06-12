@@ -48,7 +48,7 @@ const Graphcomp = ({ labels, sensorData, label }) => {
 
   return (
     <div className='flex justify-center'>
-      <Line options={options} data={data} style={{ width: "100%", height: '512px'}}/>
+      <Line options={options} data={data} style={{ width: "100%", height: '512px' }} />
     </div>
   );
 };

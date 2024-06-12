@@ -98,13 +98,8 @@ const LiveGraph = () => {
   }, []);
 
   return (
-    <div className='flex flex-col items-center'>
-      <Line options={options} data={chartData} style={{ width: '90%' }} />
-      {lastUpdated && (
-        <p className='mt-4 text-gray-600'>
-          Last Updated: {new Date(lastUpdated).toLocaleString()}
-        </p>
-      )}
+    <div className='flex flex-col items-center w-full max-h-96'>
+      <Line options={options} data={chartData}/>
     </div>
   );
 };
