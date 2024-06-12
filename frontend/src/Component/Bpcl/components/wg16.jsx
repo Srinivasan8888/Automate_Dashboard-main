@@ -30,7 +30,7 @@ const WG16 = () => {
   return (
     <div>
       <a className="flex flex-col mx-4 mt-5 font-medium text-black text-xl">
-        WaveGuide2 - 16Inch
+        WaveGuide2 - 16 Pipe
       </a>
       <div className="flex flex-col mt-5 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

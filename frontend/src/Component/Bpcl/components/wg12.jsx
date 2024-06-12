@@ -30,7 +30,7 @@ const WG12 = () => {
   return (
     <div>
       <a className="flex flex-col mx-4 mt-3 font-medium text-black text-xl">
-        WaveGuide1 - 12Inch
+        WaveGuide1 - 12 Pipe
       </a>
       <div className="flex flex-col mt-5 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
