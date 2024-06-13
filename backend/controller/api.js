@@ -26,12 +26,27 @@ export const createAsset = async (req, res) => {
     }
 };
 
-export const jsonAsset = async(req, res) => {
+export const jsonAsset = async (req, res) => {
     try {
-    const allData = await asset.find().limit(40).sort({ _id: -1 });
-    res.json(allData);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+        const allData = await asset.find().limit(40).sort({ _id: -1 });
+        res.json(allData);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+export const reportdata = async (req, res) => {
+    const { sensorid } = req.query;
+
+    try {
+
+        const assetDocumentArray = await asset.find({}, { _id: 0, [sensorid]: 1, updatedAt: 1 });
+        res.json(assetDocumentArray);
+    } catch (error) {
+        console.error("Error:", error);
+        res
+            .status(500)
+            .json({ error: "Internal Server Error", details: error.message });
+    }
 };

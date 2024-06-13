@@ -11,7 +11,7 @@ const Bpcl_Graph = () => {
     const fetchData = () => {
       axios.get(`${baseUrl}jsondata`)
         .then(response => {
-          const apiData = response.data.reverse(); // Reverse the data here
+          const apiData = response.data.reverse();
           const labels = apiData.map(item => new Date(item.updatedAt).toLocaleTimeString());
           const s1 = apiData.map(item => parseInt(item.s1, 10));
           const s2 = apiData.map(item => parseInt(item.s2, 10));
