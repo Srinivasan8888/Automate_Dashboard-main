@@ -71,23 +71,18 @@ const SensorCard = ({ sensorNumber }) => {
         console.log(response);
         const data = await response.json();
         console.log(response);
-  
         if (data === null || data.length === 0) {
           alert("No data found.");
           return;
         }
-  
-        // Check if data is an array
         if (Array.isArray(data)) {
           const doc = new jsPDF();
           const logo = xymaimg;
           const cover = coverImg;
           const disclaimer = disclaimerPage;
-  
           doc.addImage(cover, "JPG", 0, 0, 210, 297);
           doc.addPage();
           doc.addImage(logo, "PNG", 10, 10, 40, 20);
-  
           const sensorFieldName = Object.keys(data[0]).find(key => key.startsWith('s'));
           if (!sensorFieldName) {
             console.error("No sensor data found in JSON.");
@@ -95,20 +90,18 @@ const SensorCard = ({ sensorNumber }) => {
           }
   
           doc.autoTable({
-            head: [["s.no",`Sensor ${sensorNumber} Value`, "Timestamp"]], // Dynamic column header
+            head: [["s.no",`Sensor ${sensorNumber} Value`, "Timestamp"]],
             body: data.map(({ [sensorFieldName]: sensorValue, updatedAt }, index) => {
-              return [index + 1, sensorValue, updatedAt]; // Changed timestamp to use formatDate function
+              return [index + 1, sensorValue, updatedAt];
             }),
             startY: 40,
             headerStyles: {
               fillColor: [222, 121, 13],
             },
           });
-  
           doc.addPage();
           doc.addImage(logo, "PNG", 10, 10, 40, 20);
           doc.addImage(disclaimer, "PNG", 0, 50, 210, 250);
-          // doc.save("sensor_reports.pdf");
           const blob = doc.output("blob");
           const url = URL.createObjectURL(blob);
           window.open(url, "_blank");
