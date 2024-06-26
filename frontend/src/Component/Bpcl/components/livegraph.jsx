@@ -184,23 +184,23 @@ const LiveGraph = () => {
   }, []);
 
   return (
-    <div className="container mx-auto flex flex-col sm:flex-row mb-8 mt-8 max-h-96">
-  <div className="w-full sm:w-1/2 mb-4 sm:mb-0">
-    <h2 className="font-bold ml-4">WG-12pipe</h2>
-    <Line
-      options={options}
-      data={{ labels: chartData.labels, datasets: chartData.wg12 }}
-    />
-  </div>
-  <div className="w-full sm:w-1/2">
-    <h2 className="font-bold ml-4">WG-16pipe</h2>
-    <Line
-      options={options}
-      data={{ labels: chartData.labels, datasets: chartData.wg16 }}
-    />
-  </div>
-</div>
+    <div className="container mx-auto flex flex-col sm:flex-row mb-8 mt-8 max-h-96 ">
+      <div className="w-full sm:w-1/2 mb-4 sm:mb-0 ">
+        <h2 className="font-bold ml-4">WG-12pipe</h2>
+        <Line
+          options={options}
+          data={{ labels: chartData.labels, datasets: chartData.wg12 }}
+        />
+      </div>
 
+      <div className="w-full sm:w-1/2">
+        <h2 className="font-bold ml-4">WG-16pipe</h2>
+        <Line
+          options={options}
+          data={{ labels: chartData.labels, datasets: chartData.wg16 }}
+        />
+      </div>
+    </div>
   );
 };
 

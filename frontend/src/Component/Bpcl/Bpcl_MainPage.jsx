@@ -10,6 +10,9 @@ const Bpcl_MainPage = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <div>
+        <div className="flex justify-center items-center">
+          <h1 className="font-bold text-4xl">Vaccum Distillation Unit (VDU)</h1>
+        </div>
         <WG12 />
         <WG16 />
         <LiveGraph />

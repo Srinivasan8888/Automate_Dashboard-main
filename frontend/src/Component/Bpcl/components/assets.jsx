@@ -43,12 +43,12 @@ const Assets = () => {
   return (
     <div className="p-4">
       <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
-        <div className="flex-1">
+        {/* <div className="flex-1">
           <div className="text-lg font-semibold mb-2">Asset Locations</div>
           <div className="bg-orange-200 p-1.5 rounded-lg">
             <Gmap />
-          </div>
-        </div>
+          </div> 
+        </div> */}
         <div className="flex-1">
           <div className="text-lg font-semibold mb-2">Asset Details</div>
           <div className="space-y-4">
