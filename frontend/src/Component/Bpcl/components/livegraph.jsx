@@ -30,28 +30,26 @@ const options = {
     x: {
       title: {
         display: true,
-        text: 'Timestamp',
-        color: '#000000',
-        align: 'center',
-        position: 'left', 
+        text: "Timestamp",
+        color: "#000000",
+        align: "center",
+        position: "left",
       },
-    
     },
     y: {
       title: {
         display: true,
-        text: '°C',  
-        color: '#000000',
-        align: 'center',
-        position: 'left',  
+        text: "°C",
+        color: "#000000",
+        align: "center",
+        position: "left",
       },
     },
   },
 };
 
-
-
 const LiveGraph = () => {
+
   const [chartData, setChartData] = useState({
     labels: [],
     wg12: [
@@ -108,7 +106,7 @@ const LiveGraph = () => {
     ],
   });
   const [lastUpdated, setLastUpdated] = useState("");
-
+ 
   useEffect(() => {
     const fetchData = () => {
       axios
@@ -202,6 +200,7 @@ const LiveGraph = () => {
     <div className="container mx-auto flex flex-col sm:flex-row mb-8 mt-8 max-h-96 ">
       <div className="w-full sm:w-1/2 mb-4 sm:mb-0 ">
         <h2 className="font-bold ml-4">WG-12pipe</h2>
+        
         <Line
           options={options}
           data={{ labels: chartData.labels, datasets: chartData.wg12 }}
