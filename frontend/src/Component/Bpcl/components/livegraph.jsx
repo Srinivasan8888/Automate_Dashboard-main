@@ -19,22 +19,37 @@ ChartJS.register(
   PointElement,
   LineElement,
   Title,
+
   Tooltip,
   Legend
 );
 
-// Chart options
 const options = {
   responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Timestamp',
+        color: '#000000',
+        align: 'center',
+        position: 'left', 
+      },
+    
     },
-    title: {
-      display: true,
+    y: {
+      title: {
+        display: true,
+        text: '°C',  
+        color: '#000000',
+        align: 'center',
+        position: 'left',  
+      },
     },
   },
 };
+
+
 
 const LiveGraph = () => {
   const [chartData, setChartData] = useState({
