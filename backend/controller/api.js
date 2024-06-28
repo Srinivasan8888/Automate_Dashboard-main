@@ -50,3 +50,18 @@ export const reportdata = async (req, res) => {
             .json({ error: "Internal Server Error", details: error.message });
     }
 };
+
+export const chartjsondata = async (req, res) => {
+    const { sensor, limits } = req.query;
+    
+    try {   
+        const limit = parseInt(limits, 10) || 0;
+        const assetDocumentArray = await asset.find({}, { _id: 0, [sensor]: 1, updatedAt: 1 }).limit(limit);
+        res.json(assetDocumentArray);
+    } catch (error) {
+        console.error("Error:", error);
+        res
+            .status(500)
+            .json({ error: "Internal Server Error", details: error.message });
+    }
+};

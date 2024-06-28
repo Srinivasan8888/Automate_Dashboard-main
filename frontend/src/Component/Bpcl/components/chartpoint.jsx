@@ -4,118 +4,126 @@ import { baseUrl } from "../config";
 import Graphdatacomp from "../components/graphdatacomp";
 
 const Chartpoint = () => {
-    const [sensorData, setSensorData] = useState({
-        labels: [],
-        s1: [],
-        s2: [],
-        s3: [],
-        s4: [],
-        s5: [],
-        s6: [],
-        s7: [],
-        s8: [],
-    });
+  const [sensorData, setSensorData] = useState({
+    s1: { labels: [], data: [] },
+    s2: { labels: [], data: [] },
+    s3: { labels: [], data: [] },
+    s4: { labels: [], data: [] },
+    s5: { labels: [], data: [] },
+    s6: { labels: [], data: [] },
+    s7: { labels: [], data: [] },
+    s8: { labels: [], data: [] },
+  });
 
-    useEffect(() => {
-        const fetchData = () => {
-            axios
-                .get(`${baseUrl}jsondata`)
-                .then((response) => {
-                    const apiData = response.data.reverse();
-                    const labels = apiData.map((item) =>
-                        new Date(item.updatedAt).toLocaleTimeString()
-                    );
-                    const s1 = apiData.map((item) => parseInt(item.s1, 10));
-                    const s2 = apiData.map((item) => parseInt(item.s2, 10));
-                    const s3 = apiData.map((item) => parseInt(item.s3, 10));
-                    const s4 = apiData.map((item) => parseInt(item.s4, 10));
-                    const s5 = apiData.map((item) => parseInt(item.s5, 10));
-                    const s6 = apiData.map((item) => parseInt(item.s6, 10));
-                    const s7 = apiData.map((item) => parseInt(item.s7, 10));
-                    const s8 = apiData.map((item) => parseInt(item.s8, 10));
-                    setSensorData({ labels, s1, s2, s3, s4, s5, s6, s7, s8 });
-                })
-                .catch((error) => {
-                    console.error("Error fetching sensor data: ", error);
-                });
-        };
+  const fetchData = (limit, sensor) => {
+    axios
+      .get(`${baseUrl}limitdata?sensor=${sensor}&limits=${limit}`)
+      .then((response) => {
+        const apiData = response.data;
+        const labels = apiData.map((item) => new Date(item.updatedAt).toLocaleTimeString());
+        const newData = apiData.map((item) => parseInt(item[sensor], 10));
+        setSensorData((prevData) => ({
+          ...prevData,
+          [sensor]: { labels, data: newData },
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching sensor data: ", error);
+      });
+  };
 
-        fetchData();
-        const intervalId = setInterval(fetchData, 5000);
-
-        return () => clearInterval(intervalId);
-    }, []);
-
-    if (sensorData.labels.length === 0) {
-        return <div>Loading...</div>;
-    }
+  useEffect(() => {
+    // Initial fetch for each sensor with a default limit
+    fetchData(10, 's1');
+    fetchData(10, 's2');
+    fetchData(10, 's3');
+    fetchData(10, 's4');
+    fetchData(10, 's5');
+    fetchData(10, 's6');
+    fetchData(10, 's7');
+    fetchData(10, 's8');
+  }, []);
 
   return (
     <div className="flex-grow overflow-y-auto">
-    <div>
+      <div>
         <div>
-            <a className="flex flex-col mx-4 font-medium text-black text-xl">
-                WaveGuide1 - 12Inch
-            </a>
-            <div className="flex flex-col px-4">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
-
-                    
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s1}
-                        label="Sensor 1"
-                    />
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s2}
-                        label="Sensor 2"
-                    />
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s3}
-                        label="Sensor 3"
-                    />
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s4}
-                        label="Sensor 4"
-                    />
-                </div>
+          <a className="flex flex-col mx-4 font-medium text-black text-xl">
+            WaveGuide1 - 12Inch
+          </a>
+          <div className="flex flex-col px-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+              <Graphdatacomp
+                labels={sensorData.s1.labels}
+                sensorData={sensorData.s1.data}
+                label="Sensor 1"
+                fetchData={fetchData}
+                sensor="s1"
+              />
+              <Graphdatacomp
+                labels={sensorData.s2.labels}
+                sensorData={sensorData.s2.data}
+                label="Sensor 2"
+                fetchData={fetchData}
+                sensor="s2"
+              />
+              <Graphdatacomp
+                labels={sensorData.s3.labels}
+                sensorData={sensorData.s3.data}
+                label="Sensor 3"
+                fetchData={fetchData}
+                sensor="s3"
+              />
+              <Graphdatacomp
+                labels={sensorData.s4.labels}
+                sensorData={sensorData.s4.data}
+                label="Sensor 4"
+                fetchData={fetchData}
+                sensor="s4"
+              />
             </div>
+          </div>
         </div>
         <div>
-            <a className="flex flex-col mx-4 mt-10 font-medium text-black text-xl">
-                WaveGuide1 - 16Inch
-            </a>
-            <div className="flex flex-col px-4">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s5}
-                        label="Sensor 5"
-                    />
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s6}
-                        label="Sensor 6"
-                    />
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s7}
-                        label="Sensor 7"
-                    />
-                    <Graphdatacomp
-                        labels={sensorData.labels}
-                        sensorData={sensorData.s8}
-                        label="Sensor 8"
-                    />
-                </div>
+          <a className="flex flex-col mx-4 mt-10 font-medium text-black text-xl">
+            WaveGuide1 - 16Inch
+          </a>
+          <div className="flex flex-col px-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+              <Graphdatacomp
+                labels={sensorData.s5.labels}
+                sensorData={sensorData.s5.data}
+                label="Sensor 5"
+                fetchData={fetchData}
+                sensor="s5"
+              />
+              <Graphdatacomp
+                labels={sensorData.s6.labels}
+                sensorData={sensorData.s6.data}
+                label="Sensor 6"
+                fetchData={fetchData}
+                sensor="s6"
+              />
+              <Graphdatacomp
+                labels={sensorData.s7.labels}
+                sensorData={sensorData.s7.data}
+                label="Sensor 7"
+                fetchData={fetchData}
+                sensor="s7"
+              />
+              <Graphdatacomp
+                labels={sensorData.s8.labels}
+                sensorData={sensorData.s8.data}
+                label="Sensor 8"
+                fetchData={fetchData}
+                sensor="s8"
+              />
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-  )
-}
+  );
+};
 
-export default Chartpoint
+export default Chartpoint;
