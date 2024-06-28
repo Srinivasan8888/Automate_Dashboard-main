@@ -42,7 +42,7 @@ const Graphdatacomp = ({ labels, sensorData, label, fetchData, sensor }) => {
     <div className="flex flex-col items-center">
       <div className="mt-8 grid grid-cols-1 gap-1 w-full max-w-4xl">
         <div className="grid grid-cols-6 gap-6 mb-2">
-          {[10, 50, 100, 150, 200, 250].map((limit) => (
+          {[100, 500, 1000, 1500, 2000, 2500].map((limit) => (
             <button
               key={limit}
               onClick={() => fetchData(limit, sensor)}

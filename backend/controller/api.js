@@ -65,3 +65,38 @@ export const chartjsondata = async (req, res) => {
             .json({ error: "Internal Server Error", details: error.message });
     }
 };
+
+
+export const chartjsondate = async (req, res) => {
+    const { sensor, date1, date2 } = req.query;
+  
+    try {
+      const startDate = new Date(date1);
+      const endDate = new Date(date2);
+  
+      console.log("Start Date:", startDate);
+      console.log("End Date:", endDate);
+      console.log("Sensor:", sensor);
+  
+      const query = {
+        $and: [
+          { createdAt: { $gte: startDate } },
+          { createdAt: { $lte: endDate } },
+        ],
+      };
+  
+      console.log("Query:", query);
+  
+      const assetDocumentArray = await asset.find(query, { _id: 0, [sensor]: 1, createdAt: 1 });
+  
+      console.log("Result:", assetDocumentArray);
+  
+      res.json(assetDocumentArray);
+    } catch (error) {
+      console.error("Error:", error);
+      res
+        .status(500)
+        .json({ error: "Internal Server Error", details: error.message });
+    }
+  };
+  
