@@ -59,16 +59,15 @@ const Bpcl_Graph = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header /> <Tabs aria-label="Default tabs" variant="default">
-      <Tabs.Item active title="Date Chart" icon={FaChartArea}>
-         <Chartdate/>
-      </Tabs.Item>
-      <Tabs.Item title="Data point Chart" icon={LuScatterChart}>
-        <Chartpoint/>
-      </Tabs.Item>
-
-    </Tabs>
-     
+      <Header />
+      <Tabs aria-label="Default tabs" variant="default">
+        <Tabs.Item active title="Date Chart" icon={FaChartArea}>
+          <Chartdate />
+        </Tabs.Item>
+        <Tabs.Item title="Data point Chart" icon={LuScatterChart}>
+          <Chartpoint />
+        </Tabs.Item>
+      </Tabs>
     </div>
   );
 };

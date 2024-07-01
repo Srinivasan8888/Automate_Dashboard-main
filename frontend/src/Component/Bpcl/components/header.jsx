@@ -12,7 +12,7 @@ const Header = () => {
       >
         <div className="flex lg:flex-1 items-center">
           <img
-            className="h-8 w-auto"
+            className="h-16 w-auto"
             src={xymalogo}
             alt="xyma logo"
           />
@@ -22,7 +22,7 @@ const Header = () => {
         </div>
         <div className="flex lg:flex-1 lg:justify-end">
         <img
-            className="h-8 w-auto"
+            className="h-16 w-auto"
             src={bpcllogo}
             alt="bpcl logo"
           />

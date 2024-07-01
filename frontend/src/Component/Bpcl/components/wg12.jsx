@@ -42,7 +42,7 @@ const WG12 = () => {
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {sensorValue} °C
                     </h5>
-                    <p className="font-normal text-white">Sensor {index + 1}</p>
+                    <p className="font-bold text-white">Sensor {index + 1}</p>
                   </div>
                   <FaTemperatureHigh className="text-3xl text-gray-900 dark:text-white h-12 w-auto" />
                 </div>
