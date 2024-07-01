@@ -11,7 +11,7 @@ const Bpcl_Setting = () => {
       >
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           XYMA Analytics Private Ltd <br />
-          IIT Madras Research Park
+          IIT Madras Research Park (need content this is not final)
         </h5>
         <h5 className="text-xl font-medium tracking-tight text-gray-900 dark:text-white">
           The Wear Monitoring Device (WMD) monitors the wear of ceramic

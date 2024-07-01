@@ -316,7 +316,7 @@ const Reportdatecomp = () => {
                       name="startdate"
                       onChange={handleDateChange}
                       value={startDate}
-                      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm pl-8"
+                      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm pl-8 p-3"
                       ref={startDateInputRef}
                     />
                   </div>
@@ -334,7 +334,7 @@ const Reportdatecomp = () => {
                       name="enddate"
                       onChange={handleDateChange}
                       value={endDate}
-                      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-black shadow-sm pl-8"
+                      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-black shadow-sm pl-8 p-3"
                       ref={endDateInputRef}
                     />
                   </div>

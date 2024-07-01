@@ -11,12 +11,12 @@ const Bpcl_MainPage = () => {
       <Header />
       <div>
         <div className="flex justify-center items-center">
-          <h1 className="font-bold text-4xl">Vaccum Distillation Unit (VDU)</h1>
+          <h1 className="font-bold text-4xl mt-3">Vaccum Distillation Unit (VDU)</h1>
         </div>
         <WG12 />
         <WG16 />
         <LiveGraph />
-        <Assets />
+        {/* <Assets /> */}
       </div>
     </div>
   );

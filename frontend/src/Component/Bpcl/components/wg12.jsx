@@ -8,7 +8,8 @@ const WG12 = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      axios.get(`${baseUrl}jsondata`)
+      axios
+        .get(`${baseUrl}jsondata`)
         .then((response) => {
           setData(response.data[0]);
         })
@@ -27,11 +28,35 @@ const WG12 = () => {
     return <div>Loading...</div>;
   }
 
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are 0-based, so add 1
+    const day = String(date.getUTCDate()).padStart(2, "0");
+    const hours = String(date.getUTCHours()).padStart(2, "0");
+    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+    const seconds = String(date.getUTCSeconds()).padStart(2, "0");
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  };
+
   return (
     <div>
-      <a className="flex flex-col mx-4 mt-3 font-medium text-black text-xl">
-        WaveGuide1 - 12 Pipe
-      </a>
+      
+      <div className="flex justify-between">
+  <a className="flex-col mx-4 mt-3 font-medium text-black text-xl justify-between items-center">
+    WaveGuide1 - 12 Pipe
+  </a>
+
+  <div>
+    <a className="flex-col mb-2 text-2xl font-medium text-black text-xl  mr-3">
+      Last-Updated : {data.updatedAt ? formatDate(data.updatedAt) : "Loading..."}
+    </a>
+  </div>
+</div>
+
+
+
+
       <div className="flex flex-col mt-5 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {[data.s1, data.s2, data.s3, data.s4].map((sensorValue, index) => (

@@ -16,19 +16,19 @@ const Header = () => {
             src={xymalogo}
             alt="xyma logo"
           />
-          <a href="#" className="font-medium p-1.5 text-black">
+          {/* <a href="#" className="font-medium p-1.5 text-black">
             XYMA Analytics
-          </a>
+          </a> */}
         </div>
         <div className="flex lg:flex-1 lg:justify-end">
         <img
-            className="h-16 w-auto"
+            className="h-20 w-auto"
             src={bpcllogo}
             alt="bpcl logo"
           />
-          <a href="#" className="font-medium p-1.5 text-black">
+          {/* <a href="#" className="font-medium p-1.5 text-black">
            BPCL
-          </a>
+          </a> */}
         </div>
       </nav>
     </header>
