@@ -4,6 +4,7 @@ import ReportCards from "./components/reportcard";
 import { Tabs } from "flowbite-react";
 import { FaChartArea } from "react-icons/fa";
 import { LuScatterChart } from "react-icons/lu";
+import Reportdatecomp from "./components/reportdatecomp";
 
 const Bpcl_report = () => {
   return (
@@ -12,7 +13,7 @@ const Bpcl_report = () => {
 
       <Tabs aria-label="Default tabs" variant="default">
         <Tabs.Item active title="Date Report" icon={FaChartArea}>
-          
+          <Reportdatecomp/>
         </Tabs.Item>
         <Tabs.Item title="Report" icon={LuScatterChart}>
         <ReportCards />
